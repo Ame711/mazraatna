@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مزرعتنا</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap">
+<style>
+:root{--card:#fff8ea;--ink:#3b2a14;--accent:#5b8a2e;--accent-ink:#fff;--muted:#8a7452;--line:#e6d3ac;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--card:#2a2113;--ink:#f6e8c8;--accent:#8fbf55;--accent-ink:#1d2a0c;--muted:#b9a27a;--line:#4a3b22}}
+html{scroll-padding-top:env(safe-area-inset-top,0px);color-scheme:light dark}
+html,body{height:100%;margin:0;overflow:hidden;background:#f2cf9a;font-family:'Tajawal',system-ui,sans-serif;color:var(--ink)}
+#c{position:fixed;inset:0;touch-action:none}
+#c canvas{display:block;width:100%;height:100%}
+.card{background:var(--card);border:2px solid var(--line);border-radius:18px}
+#intro{position:fixed;inset:0;z-index:10;display:none;align-items:flex-end;justify-content:center;padding:16px;padding-bottom:calc(24px + env(safe-area-inset-bottom,0px));pointer-events:none}
+#intro .card{pointer-events:auto;width:100%;max-width:420px;padding:20px}
+h1{margin:0 0 6px;font-size:28px;font-weight:800}
+p{margin:0 0 14px;color:var(--muted);line-height:1.6}
+input{width:100%;box-sizing:border-box;font:inherit;font-size:18px;padding:12px 14px;border-radius:12px;border:2px solid var(--line);background:transparent;color:var(--ink);margin-bottom:10px}
+input:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+button{font:inherit;font-weight:700;font-size:17px;border:0;border-radius:12px;padding:12px 16px;cursor:pointer;background:var(--accent);color:var(--accent-ink)}
+button.alt{background:var(--card);color:var(--ink);border:2px solid var(--line)}
+#intro button{width:100%;margin-top:4px}
+#title{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);padding:8px 20px;font-size:20px;font-weight:800;white-space:nowrap;pointer-events:none;text-align:center}
+#title small{display:block;font-size:13px;font-weight:400;color:var(--muted)}
+#bar{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:16px;right:16px;display:flex;gap:8px;justify-content:center}
+#bar{flex-wrap:wrap;z-index:1}
+#bar button{flex:1;min-width:30%;max-width:150px;padding:10px 8px;font-size:15px}
+#msg{position:fixed;top:calc(80px + env(safe-area-inset-top,0px));left:16px;right:16px;margin:auto;max-width:360px;padding:10px 14px;display:none;text-align:center;font-weight:700}
+#shop{position:fixed;inset:0;z-index:20;display:none;align-items:flex-end;justify-content:center;background:rgba(40,25,5,.45)}
+#shop .card{width:100%;max-width:480px;max-height:78%;overflow:auto;padding:18px;border-radius:22px 22px 0 0;padding-bottom:calc(18px + env(safe-area-inset-bottom,0px))}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.item{border:2px solid var(--line);border-radius:14px;padding:12px;text-align:center}
+.item b{display:block;font-size:30px}
+.item span{display:block;font-weight:700;margin-top:2px}
+.item small{color:var(--muted)}
+</style>
+</head>
+<body>
+<div id="c"></div>
+<div id="title" class="card">قريتنا<small id="cnt"></small></div>
+<div id="msg" class="card"></div>
+
+<div id="intro">
+  <div class="card">
+    <h1 id="ih">خذ مزرعتك 🌾</h1>
+    <p>اكتب اسمك وتنضم مزرعتك لقرية الجميع، مع نخلة وخروف مجاناً.</p>
+    <input id="nm" maxlength="20" placeholder="اسمك أو يوزرك" autocomplete="off">
+    <button id="go">أبغى مزرعتي</button>
+    <button id="skip" class="alt">تصفح القرية</button>
+  </div>
+</div>
+
+<div id="bar">
+  <button id="mine">مزرعتي</button>
+  <button id="all" class="alt">القرية</button>
+  <button id="ren" class="alt">تغيير الاسم</button>
+  <button id="shopBtn" class="alt">المتجر</button>
+</div>
+
+<div id="shop">
+  <div class="card">
+    <h1>المتجر</h1>
+    <p>طوّر مزرعتك. المتجر يفتح قريباً.</p>
+    <div class="grid">
+      <div class="item"><b>🌍</b><span>توسعة الأرض</span><small>قريباً</small></div>
+      <div class="item"><b>🐄</b><span>أبقار</span><small>قريباً</small></div>
+      <div class="item"><b>🐪</b><span>إبل</span><small>قريباً</small></div>
+      <div class="item"><b>🌾</b><span>حقل قمح</span><small>قريباً</small></div>
+      <div class="item"><b>🍎</b><span>بستان رمان</span><small>قريباً</small></div>
+      <div class="item"><b>🏮</b><span>ديكور وفوانيس</span><small>قريباً</small></div>
+    </div>
+    <button id="closeShop" class="alt" style="width:100%">رجوع</button>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+var $=function(id){return document.getElementById(id);};
+var MAXF=150,S=4.2;
+var renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+$('c').appendChild(renderer.domElement);
+var scene=new THREE.Scene();
+scene.background=new THREE.Color(0xf2cf9a);
+scene.fog=new THREE.Fog(0xf2cf9a,40,260);
+var cam=new THREE.PerspectiveCamera(45,1,0.1,600);
+scene.add(new THREE.HemisphereLight(0xfff0d0,0x8a6a3a,0.85));
+var sun=new THREE.DirectionalLight(0xffd9a0,0.9);sun.position.set(6,9,4);scene.add(sun);
+function mat(c){return new THREE.MeshStandardMaterial({color:c,flatShading:true,roughness:1,metalness:0});}
+function mk(g,c,x,y,z){var m=new THREE.Mesh(g,mat(c));m.position.set(x||0,y||0,z||0);return m;}
+function box(w,h,d,c,x,y,z){return mk(new THREE.BoxGeometry(w,h,d),c,x,y,z);}
+var sand=mk(new THREE.CircleGeometry(500,24),0xd9b878,0,-0.32,0);sand.rotation.x=-Math.PI/2;scene.add(sand);
+
+function makePalm(){
+  var p=new THREE.Group();
+  for(var i=0;i<6;i++)p.add(mk(new THREE.CylinderGeometry(0.15-i*0.012,0.17-i*0.012,0.55,6),0x8a5a38,i*0.05,0.27+i*0.52,0));
+  var top=new THREE.Group();top.position.set(0.3,3.2,0);p.add(top);
+  for(var j=0;j<8;j++){var pv=new THREE.Group();pv.rotation.y=j*Math.PI/4;var lf=box(1.7,0.05,0.4,j%2?0x4f8a2b:0x5f9a35,0.85,0,0);lf.rotation.z=-0.35;pv.add(lf);top.add(pv);}
+  p.userData.top=top;return p;
+}
+function makeSheep(){
+  var g=new THREE.Group();
+  var b=mk(new THREE.IcosahedronGeometry(0.34,0),0xf7f1e3,0,0.5,0);b.scale.set(1.3,1,1);g.add(b);
+  g.add(box(0.24,0.24,0.22,0x3a2a22,0.48,0.58,0));
+  [[0.2,0.14],[0.2,-0.14],[-0.2,0.14],[-0.2,-0.14]].forEach(function(l){g.add(box(0.07,0.25,0.07,0x3a2a22,l[0],0.125,l[1]));});
+  return g;
+}
+function label(txt){
+  var c=document.createElement('canvas');c.width=256;c.height=64;var x=c.getContext('2d');
+  x.fillStyle='rgba(255,248,234,0.93)';x.fillRect(0,6,256,52);
+  x.fillStyle='#3b2a14';x.font='bold 30px Tajawal,sans-serif';x.textAlign='center';x.fillText(txt.slice(0,18),128,44);
+  var sp=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),depthWrite:false}));
+  sp.scale.set(3.4,0.85,1);return sp;
+}
+function makeFarm(name){
+  var g=new THREE.Group();
+  g.add(box(3.6,0.3,3.6,0x86a257,0,-0.15,0));
+  g.add(box(3.7,0.12,3.7,0x7a5a34,0,-0.3,0));
+  var pm=makePalm();pm.position.set(1.2,0,-0.9);pm.scale.set(0.6,0.6,0.6);g.add(pm);
+  var hs=new THREE.Group();hs.add(box(1.1,0.7,0.9,0xd8bf94,0,0.35,0));var rf=mk(new THREE.ConeGeometry(0.9,0.5,4),0x8a5a38,0,0.95,0);rf.rotation.y=Math.PI/4;hs.add(rf);hs.add(box(0.22,0.4,0.04,0x5a3a1e,0,0.2,0.46));hs.position.set(-0.9,0,-0.9);g.add(hs);
+  var fd=new THREE.Group();fd.add(box(1.7,0.08,1.1,0x7a5a34,0,0.04,0));for(var r=0;r<4;r++)fd.add(box(1.5,0.2,0.1,r%2?0xe0b84a:0xefc85a,0,0.18,-0.4+r*0.27));fd.position.set(-0.7,0,0.9);g.add(fd);
+  var sh=makeSheep();sh.scale.set(0.7,0.7,0.7);g.add(sh);
+  var lb=label(name);lb.position.set(0,3.9,0);g.add(lb);
+  g.userData={pm:pm,sh:sh,a:Math.random()*6,name:name,lb:lb};
+  return g;
+}
+function spiral(n){var x=0,z=0,dx=0,dz=-1;for(var i=0;i<n;i++){if(x===z||(x<0&&x===-z)||(x>0&&x===1-z)){var t=dx;dx=-dz;dz=t;}x+=dx;z+=dz;}return[x*S,z*S];}
+
+var farms={},myId=null,db=null,total=0;
+function sync(list){
+  list.sort(function(a,b){return (a.ts-b.ts)||(a.id<b.id?-1:1);});
+  total=list.length;
+  var show=list.slice(0,MAXF);
+  if(myId){var mi=list.findIndex(function(d){return d.id===myId;});if(mi>=MAXF)show.push(list[mi]);}
+  var keep={};
+  show.forEach(function(d,i){
+    keep[d.id]=1;var f=farms[d.id];
+    if(f&&f.userData.name!==d.name){scene.remove(f);f=null;}
+    if(!f){f=makeFarm(d.name);farms[d.id]=f;scene.add(f);}
+    var p=spiral(i);f.position.set(p[0],0,p[1]);f.userData.ts=d.ts;
+  });
+  Object.keys(farms).forEach(function(k){if(!keep[k]){scene.remove(farms[k]);delete farms[k];}});
+  $('cnt').textContent=total+' مزرعة';
+}
+
+// camera
+var th=0.6,ph=1.0,rad=40,radT=40,ctr=new THREE.Vector3(0,0.6,0),tgt=new THREE.Vector3(0,0.6,0),ptr={};
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+function overview(){tgt.set(0,0.6,0);radT=clamp(16+Math.sqrt(Math.max(total,1))*7,18,140);}
+function fly(id){var f=farms[id];if(!f)return false;tgt.set(f.position.x,0.6,f.position.z);radT=window.innerWidth<window.innerHeight?12:9;return true;}
+var cv=renderer.domElement;
+cv.addEventListener('pointerdown',function(e){ptr[e.pointerId]=[e.clientX,e.clientY];});
+function up(e){delete ptr[e.pointerId];}
+window.addEventListener('pointerup',up);window.addEventListener('pointercancel',up);
+window.addEventListener('pointermove',function(e){
+  var p=ptr[e.pointerId];if(!p)return;var ids=Object.keys(ptr);
+  if(ids.length===1){th-=(e.clientX-p[0])*0.008;ph=clamp(ph-(e.clientY-p[1])*0.006,0.45,1.35);}
+  else if(ids.length===2){var o=ptr[ids[0]==e.pointerId?ids[1]:ids[0]];var d0=Math.hypot(p[0]-o[0],p[1]-o[1])||1,d1=Math.hypot(e.clientX-o[0],e.clientY-o[1])||1;radT=clamp(radT*d0/d1,6,140);rad=radT;}
+  ptr[e.pointerId]=[e.clientX,e.clientY];
+});
+cv.addEventListener('wheel',function(e){radT=clamp(radT+e.deltaY*0.05*(radT/20),6,140);e.preventDefault();},{passive:false});
+function resize(){var w=window.innerWidth,h=window.innerHeight;renderer.setSize(w,h);cam.aspect=w/h;cam.updateProjectionMatrix();}
+window.addEventListener('resize',resize);resize();
+
+var clock=new THREE.Clock();
+(function loop(){
+  var dt=Math.min(clock.getDelta(),0.05),t=clock.elapsedTime;
+  if(!Object.keys(ptr).length)th+=dt*0.08;
+  ctr.lerp(tgt,0.06);rad+=(radT-rad)*0.06;
+  for(var k in farms){var u=farms[k].userData;u.a+=dt*0.35;
+    u.sh.position.set(1.0+Math.cos(u.a)*0.5,0,0.9+Math.sin(u.a)*0.5);
+    u.sh.rotation.y=-Math.atan2(Math.cos(u.a),-Math.sin(u.a));
+    u.pm.userData.top.rotation.y=Math.sin(t*0.5+u.a)*0.08;}
+  cam.position.set(ctr.x+rad*Math.sin(ph)*Math.sin(th),ctr.y+rad*Math.cos(ph),ctr.z+rad*Math.sin(ph)*Math.cos(th));
+  cam.lookAt(ctr);renderer.render(scene,cam);requestAnimationFrame(loop);
+})();
+
+// UI
+function msg(t){var m=$('msg');m.textContent=t;m.style.display='block';clearTimeout(msg.t);msg.t=setTimeout(function(){m.style.display='none';},4500);}
+function openIntro(ren){var f=ren&&myId&&farms[myId];$('ih').textContent=f?'غيّر اسمك ✏️':'خذ مزرعتك 🌾';$('nm').value=f?f.userData.name:'';$('go').textContent=f?'حفظ الاسم':'أبغى مزرعتي';$('intro').style.display='flex';if(f)$('nm').focus();}
+var localName=null;
+try{localName=localStorage.getItem('farm_name');}catch(e){}
+var first=true;
+function afterFirst(){
+  if(first){first=false;overview();if(myId&&farms[myId])fly(myId);else openIntro();}
+}
+$('go').onclick=async function(){
+  var n=$('nm').value.trim();if(!n){$('nm').focus();return;}
+  $('intro').style.display='none';
+  try{localStorage.setItem('farm_name',n);}catch(e){}
+  if(db&&myId){
+    try{var ts=(farms[myId]&&farms[myId].userData.ts)||Date.now();await db.collection('farms').doc(myId).set({name:n,ts:ts});upsert(myId,n,ts);sync(list);setTimeout(function(){fly(myId);},300);}
+    catch(e){msg('ما قدرنا نسجل مزرعتك الحين. التسجيل المشترك غير متاح لك.');}
+  }else{
+    myId='local';var arr=[{id:'local',name:n,ts:1}];sync(arr);setTimeout(function(){fly('local');},200);
+    msg('وضع تجريبي: المزرعة محفوظة عندك بس.');
+  }
+};
+$('nm').addEventListener('keydown',function(e){if(e.key==='Enter')$('go').click();});
+$('skip').onclick=function(){$('intro').style.display='none';overview();};
+$('mine').onclick=function(){if(myId&&farms[myId])fly(myId);else openIntro();};
+$('all').onclick=overview;
+$('ren').onclick=function(){if(myId&&farms[myId])openIntro(true);else openIntro();};
+$('shopBtn').onclick=function(){$('shop').style.display='flex';};
+$('closeShop').onclick=function(){$('shop').style.display='none';};
+
+// Firebase
+var cfg={apiKey:"AIzaSyB0kVjT-iOJJTl1QcY7kHlX2p4WjaRl_CU",authDomain:"mazraatna-2084a.firebaseapp.com",projectId:"mazraatna-2084a",storageBucket:"mazraatna-2084a.firebasestorage.app",messagingSenderId:"520881025032",appId:"1:520881025032:web:7af2b2423ed5a76fea21bd"};
+var list=[];
+function upsert(id,name,ts){var e=list.find(function(d){return d.id===id;});if(e){e.name=name;}else{list.push({id:id,name:name,ts:ts});}}
+(async function(){
+  try{
+    firebase.initializeApp(cfg);
+    var auth=firebase.auth();
+    await new Promise(function(res){var un=auth.onAuthStateChanged(function(){un();res();});});
+    if(!auth.currentUser)await auth.signInAnonymously();
+    myId=auth.currentUser.uid;
+    db=firebase.firestore();
+    var snap=await db.collection('farms').orderBy('ts').limit(MAXF).get();
+    snap.docs.forEach(function(d){var v=d.data();if(v&&v.name)list.push({id:d.id,name:String(v.name),ts:+v.ts||0});});
+    if(!list.some(function(d){return d.id===myId;})){
+      var me=await db.collection('farms').doc(myId).get();
+      if(me.exists){var v=me.data();list.push({id:me.id,name:String(v.name),ts:+v.ts||0});}
+    }
+  }catch(e){db=null;msg('تعذر الاتصال بالخادم. حدّث الصفحة وجرب مرة ثانية.');}
+  sync(list);afterFirst();
+})();
+})();
+</script>
+</body>
+</html>
